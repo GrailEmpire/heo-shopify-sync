@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Importar produtos da Heo</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f9f9f9; }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    h2 { margin-top: 2rem; }
+    ul { padding-left: 1rem; }
+    li { margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Importar produtos da Heo (Hasbro)</h1>
+  <form method="POST" action="/importar">
+    <button type="submit">Importar produtos</button>
+  </form>
+
+  <h2>Histórico de sincronizações</h2>
+  <ul>
+    <% if (history.length === 0) { %>
+      <li>Nenhuma sincronização ainda.</li>
+    <% } %>
+    <% history.forEach(h => { %>
+      <li>
+        <strong><%= new Date(h.date).toLocaleString() %></strong> –
+        Criados: <%= h.created %>, Atualizados: <%= h.updated %>,
+        Erros: <%= h.errors %>, Total da Heo: <%= h.totalFromHeo %>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>
